@@ -1,0 +1,26 @@
+{
+  "posts/welcome/index.qmd": {
+    "index.html": "3b0144e6"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "57dd37da"
+  },
+  "index.qmd": {
+    "index.html": "c837ef35"
+  },
+  "about.qmd": {
+    "about.html": "22fe1c4d"
+  },
+  "posts/ade-health-diase/index.qmd": {
+    "index.html": "c2084de2"
+  },
+  "posts/evt-sintecs-data-genaration/index.qmd": {
+    "index.html": "1fec2bbd"
+  },
+  "posts/evt-fibcall-dataset/index.qmd": {
+    "index.html": "6fd6ebed"
+  },
+  "posts/evt-sintecs-data-genaration/index2.qmd": {
+    "index2.html": "b98bb248"
+  }
+}
