@@ -1,7 +1,0 @@
----
-title: "Observação de dados simulados do  fibcall-dataset"
-author: "Ana Carolina Balbino"
-date: "2025-10-06"
-categories: [R, code, analysis, EVT, wcet, extRemes]
-image: "image.jpg"
----
