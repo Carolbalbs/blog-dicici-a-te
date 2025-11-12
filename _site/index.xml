@@ -10,7 +10,7 @@
 <atom:link href="https://carolbalbs.github.io/blog-dicici-a-te/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog for learning with you!</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 06 Oct 2025 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 10 Nov 2025 03:00:00 GMT</lastBuildDate>
 <item>
   <title>Observação de dados simulados do fibcall-dataset</title>
   <dc:creator>Ana Carolina Balbino</dc:creator>
@@ -155,29 +155,55 @@ font-style: inherit;">'c'</span>))</span></code></pre></div></div>
 </section>
 <section id="análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" class="level1">
 <h1>Análise de Valores Extremos - Resultados obtidos através do metodo Bayesiano</h1>
-<section id="dataset1" class="level2">
-<h2 class="anchored" data-anchor-id="dataset1">dataset1</h2>
-<div class="cell" data-tbl-cap="Temperature and ozone level.">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(extRemes)</span>
-<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">library</span>(extRemes)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: Lmoments</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: distillery</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Anexando pacote: 'extRemes'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Os seguintes objetos são mascarados por 'package:stats':
+
+    qqnorm, qqplot</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span></code></pre></div></div>
+</details>
+</div>
+<section id="dataset-1" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-1">Dataset 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Carregar dados</span></span>
-<span id="cb2-3">df <span class="ot" style="color: #003B4F;
+<span id="cb8-2">df <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">read.csv2</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv"</span>)</span>
-<span id="cb2-4"></span>
-<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+<span id="cb8-3"></span>
+<span id="cb8-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Verificar as colunas disponíveis</span></span>
-<span id="cb2-6"><span class="fu" style="color: #4758AB;
+<span id="cb8-5"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">names</span>(df)</span></code></pre></div></div>
 </details>
@@ -186,7 +212,7 @@ font-style: inherit;">names</span>(df)</span></code></pre></div></div>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">class</span>(df<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -199,7 +225,7 @@ font-style: inherit;">$</span>CYCLES)</span></code></pre></div></div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">hist</span>(df<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -211,20 +237,142 @@ font-style: inherit;">50</span>,<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">main=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>)</span></code></pre></div></div>
+font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xlab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CICLOS"</span>,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ylab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Frequência"</span>)</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>A partir do histograma é possivel perceber que este dataset não obterá um bom ajuste quando aplicado as tecnicas de maximos para medição dw WCET</p>
+</section>
+<section id="dataset-2" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-2">Dataset 2</h2>
 <section id="ajuste-de-maximos-1" class="level3">
 <h3 class="anchored" data-anchor-id="ajuste-de-maximos-1">Ajuste de Maximos</h3>
 <section id="block-maxima-1" class="level4">
 <h4 class="anchored" data-anchor-id="block-maxima-1">Block Maxima</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">blocksize <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb13-2">n_dados <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>CYCLES)</span>
+<span id="cb13-3">n_blocos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">floor</span>(n_dados <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> blocksize)</span>
+<span id="cb13-4"></span>
+<span id="cb13-5">blocos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>CYCLES[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>(n_blocos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> blocksize)], </span>
+<span id="cb13-6">                <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>n_blocos, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">each =</span> blocksize))</span>
+<span id="cb13-7">maximos_blocos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sapply</span>(blocos, max)</span>
+<span id="cb13-8"></span>
+<span id="cb13-9">ajuste_bm <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fevd</span>(maximos_blocos, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GEV"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bayesian"</span>)</span>
+<span id="cb13-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(ajuste_bm)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+fevd(x = maximos_blocos, type = "GEV", method = "Bayesian")
+
+[1] "Estimation Method used: Bayesian"
+
+
+ Acceptance Rates:
+log.scale     shape 
+0.3905781 0.4558912 
+fevd(x = maximos_blocos, type = "GEV", method = "Bayesian")
+
+[1] "Quantiles of MCMC Sample from Posterior Distribution"
+
+                 2.5% Posterior Mean        97.5%
+location 4.597460e+06   4.597463e+06 4.597466e+06
+scale    8.886102e+02   1.051409e+03 1.247062e+03
+shape    7.792761e-01   9.977827e-01 1.261825e+00
+
+
+ Estimated parameter covariance matrix.
+              location    log.scale        shape
+location   2.570502529    0.3090637 -0.002256582
+log.scale  0.309063656 8197.3409622  9.221257947
+shape     -0.002256582    9.2212579  0.015087538
+
+ DIC =  5445.578 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(ajuste_bm)</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="pot-1" class="level4">
 <h4 class="anchored" data-anchor-id="pot-1">PoT</h4>
@@ -237,11 +385,13 @@ font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>)</span></code
 </section>
 <section id="modelo-gp-generalized-pareto-1" class="level4">
 <h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-1">Modelo GP (Generalized Pareto)</h4>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV</strong></p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP</strong></p>
 </section>
 </section>
 </section>
-<section id="dataset2" class="level2">
-<h2 class="anchored" data-anchor-id="dataset2">dataset2</h2>
+<section id="dataset-3" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-3">Dataset 3</h2>
 <section id="ajuste-de-maximos-2" class="level3">
 <h3 class="anchored" data-anchor-id="ajuste-de-maximos-2">Ajuste de Maximos</h3>
 <section id="block-maxima-2" class="level4">
@@ -258,8 +408,15 @@ font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>)</span></code
 </section>
 <section id="modelo-gp-generalized-pareto-2" class="level4">
 <h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-2">Modelo GP (Generalized Pareto)</h4>
-<p><strong>Quantiles of MCMC Sample from Posterior Distribution</strong> ## dataset3 ### Ajuste de Maximos</p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV</strong></p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP</strong></p>
 </section>
+</section>
+</section>
+<section id="dataset-4" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-4">Dataset 4</h2>
+<section id="ajuste-de-maximos-3" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-3">Ajuste de Maximos</h3>
 <section id="block-maxima-3" class="level4">
 <h4 class="anchored" data-anchor-id="block-maxima-3">Block Maxima</h4>
 </section>
@@ -274,27 +431,8 @@ font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>)</span></code
 </section>
 <section id="modelo-gp-generalized-pareto-3" class="level4">
 <h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-3">Modelo GP (Generalized Pareto)</h4>
-</section>
-</section>
-</section>
-<section id="dataset4" class="level2">
-<h2 class="anchored" data-anchor-id="dataset4">dataset4</h2>
-<section id="ajuste-de-maximos-3" class="level3">
-<h3 class="anchored" data-anchor-id="ajuste-de-maximos-3">Ajuste de Maximos</h3>
-<section id="block-maxima-4" class="level4">
-<h4 class="anchored" data-anchor-id="block-maxima-4">Block Maxima</h4>
-</section>
-<section id="pot-4" class="level4">
-<h4 class="anchored" data-anchor-id="pot-4">PoT</h4>
-</section>
-</section>
-<section id="aplicação-de-evt-para-wcet-4" class="level3">
-<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-4">Aplicação de EVT para WCET</h3>
-<section id="modelo-gev-generalized-extreme-value-4" class="level4">
-<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-4">Modelo GEV (Generalized Extreme Value)</h4>
-</section>
-<section id="modelo-gp-generalized-pareto-4" class="level4">
-<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-4">Modelo GP (Generalized Pareto)</h4>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV</strong></p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP</strong></p>
 </section>
 </section>
 </section>
@@ -313,7 +451,7 @@ font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>)</span></code
   <category>wcet</category>
   <category>extRemes</category>
   <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/</guid>
-  <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
+  <pubDate>Mon, 10 Nov 2025 03:00:00 GMT</pubDate>
   <media:content url="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>

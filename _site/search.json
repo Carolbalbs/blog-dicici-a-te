@@ -35,25 +35,32 @@
     "text": "Aplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\\[ G({{z}})=exp\\{-{{[1+\\xi(\\frac{z-\\mu}{\\sigma})]^{-1/\\xi}}}\\} \\]\n\n\nModelo GP (Generalized Pareto)\n\\[ H\\left(y{{}}\\right)=1-^{}(1+~\\frac{\\xi y}{\\sigma}){{^{-1/\\xi}}} \\]"
   },
   {
-    "objectID": "posts/evt-fibcall-dataset/index.html#dataset1",
-    "href": "posts/evt-fibcall-dataset/index.html#dataset1",
+    "objectID": "posts/evt-fibcall-dataset/index.html#dataset-1",
+    "href": "posts/evt-fibcall-dataset/index.html#dataset-1",
     "title": "Observação de dados simulados do fibcall-dataset",
-    "section": "dataset1",
-    "text": "dataset1\n\n\nCode\nlibrary(extRemes)\n# Carregar dados\ndf &lt;- read.csv2(\"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv\")\n\n# Verificar as colunas disponíveis\nnames(df)\n\n\n[1] \"CYCLES\" \"X0xE1\"  \"X0xE2\"  \"X0xE7\"  \"X0xE0\"  \"X0x17\"  \"Ox12\"  \n\n\nCode\nclass(df$CYCLES)\n\n\n[1] \"integer\"\n\n\n\n\nCode\nhist(df$CYCLES, breaks = 50,main=\"Distribuição de CYCLES - Dataset1\")\n\n\n\n\n\n\n\n\n\n\nAjuste de Maximos\n\nBlock Maxima\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)"
+    "section": "Dataset 1",
+    "text": "Dataset 1\n\n\nCode\n# Carregar dados\ndf &lt;- read.csv2(\"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv\")\n\n# Verificar as colunas disponíveis\nnames(df)\n\n\n[1] \"CYCLES\" \"X0xE1\"  \"X0xE2\"  \"X0xE7\"  \"X0xE0\"  \"X0x17\"  \"Ox12\"  \n\n\nCode\nclass(df$CYCLES)\n\n\n[1] \"integer\"\n\n\n\n\nCode\nhist(df$CYCLES, breaks = 50,main=\"Distribuição de CYCLES - Dataset1\",xlab = \"CICLOS\",ylab = \"Frequência\")\n\n\n\n\n\n\n\n\n\nA partir do histograma é possivel perceber que este dataset não obterá um bom ajuste quando aplicado as tecnicas de maximos para medição dw WCET"
   },
   {
-    "objectID": "posts/evt-fibcall-dataset/index.html#dataset2",
-    "href": "posts/evt-fibcall-dataset/index.html#dataset2",
+    "objectID": "posts/evt-fibcall-dataset/index.html#dataset-2",
+    "href": "posts/evt-fibcall-dataset/index.html#dataset-2",
     "title": "Observação de dados simulados do fibcall-dataset",
-    "section": "dataset2",
-    "text": "dataset2\n\nAjuste de Maximos\n\nBlock Maxima\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)\nQuantiles of MCMC Sample from Posterior Distribution ## dataset3 ### Ajuste de Maximos\n\n\nBlock Maxima\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)"
+    "section": "Dataset 2",
+    "text": "Dataset 2\n\nAjuste de Maximos\n\nBlock Maxima\n\n\nCode\nblocksize &lt;- 100\nn_dados &lt;- length(df$CYCLES)\nn_blocos &lt;- floor(n_dados / blocksize)\n\nblocos &lt;- split(df$CYCLES[1:(n_blocos * blocksize)], \n                rep(1:n_blocos, each = blocksize))\nmaximos_blocos &lt;- sapply(blocos, max)\n\najuste_bm &lt;- fevd(maximos_blocos, type = \"GEV\", method = \"Bayesian\")\nsummary(ajuste_bm)\n\n\n\nfevd(x = maximos_blocos, type = \"GEV\", method = \"Bayesian\")\n\n[1] \"Estimation Method used: Bayesian\"\n\n\n Acceptance Rates:\nlog.scale     shape \n0.3905781 0.4558912 \nfevd(x = maximos_blocos, type = \"GEV\", method = \"Bayesian\")\n\n[1] \"Quantiles of MCMC Sample from Posterior Distribution\"\n\n                 2.5% Posterior Mean        97.5%\nlocation 4.597460e+06   4.597463e+06 4.597466e+06\nscale    8.886102e+02   1.051409e+03 1.247062e+03\nshape    7.792761e-01   9.977827e-01 1.261825e+00\n\n\n Estimated parameter covariance matrix.\n              location    log.scale        shape\nlocation   2.570502529    0.3090637 -0.002256582\nlog.scale  0.309063656 8197.3409622  9.221257947\nshape     -0.002256582    9.2212579  0.015087538\n\n DIC =  5445.578 \n\n\nCode\nplot(ajuste_bm)\n\n\n\n\n\n\n\n\n\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)\nEstimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV\nEstimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP"
   },
   {
-    "objectID": "posts/evt-fibcall-dataset/index.html#dataset4",
-    "href": "posts/evt-fibcall-dataset/index.html#dataset4",
+    "objectID": "posts/evt-fibcall-dataset/index.html#dataset-3",
+    "href": "posts/evt-fibcall-dataset/index.html#dataset-3",
     "title": "Observação de dados simulados do fibcall-dataset",
-    "section": "dataset4",
-    "text": "dataset4\n\nAjuste de Maximos\n\nBlock Maxima\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)"
+    "section": "Dataset 3",
+    "text": "Dataset 3\n\nAjuste de Maximos\n\nBlock Maxima\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)\nEstimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV\nEstimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP"
+  },
+  {
+    "objectID": "posts/evt-fibcall-dataset/index.html#dataset-4",
+    "href": "posts/evt-fibcall-dataset/index.html#dataset-4",
+    "title": "Observação de dados simulados do fibcall-dataset",
+    "section": "Dataset 4",
+    "text": "Dataset 4\n\nAjuste de Maximos\n\nBlock Maxima\n\n\nPoT\n\n\n\nAplicação de EVT para WCET\n\nModelo GEV (Generalized Extreme Value)\n\n\nModelo GP (Generalized Pareto)\nEstimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV\nEstimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP"
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -74,6 +81,6 @@
     "href": "index.html",
     "title": "Didici a te!",
     "section": "",
-    "text": "Observação de dados simulados do fibcall-dataset\n\n\n\nR\n\ncode\n\nanalysis\n\nEVT\n\nwcet\n\nextRemes\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nAna Carolina Balbino\n\n\n\n\n\n\n\n\n\n\n\n\nAnalise Explorátioria de dados utilizando o banco de dados “Heart Disease”\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nAna Carolina Balbino\n\n\n\n\n\n\n\n\n\n\n\n\nGeração de dados Sinteticos aplicados a Teoria dos valores Extremos(EVT)\n\n\n\nR\n\ncode\n\nanalysis\n\nEVT\n\nwcet\n\nextRemes\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nAna Carolina Balbino\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nOct 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items\n Back to top"
+    "text": "Observação de dados simulados do fibcall-dataset\n\n\n\nR\n\ncode\n\nanalysis\n\nEVT\n\nwcet\n\nextRemes\n\n\n\n\n\n\n\n\n\nNov 10, 2025\n\n\nAna Carolina Balbino\n\n\n\n\n\n\n\n\n\n\n\n\nAnalise Explorátioria de dados utilizando o banco de dados “Heart Disease”\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nAna Carolina Balbino\n\n\n\n\n\n\n\n\n\n\n\n\nGeração de dados Sinteticos aplicados a Teoria dos valores Extremos(EVT)\n\n\n\nR\n\ncode\n\nanalysis\n\nEVT\n\nwcet\n\nextRemes\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nAna Carolina Balbino\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nOct 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items\n Back to top"
   }
 ]

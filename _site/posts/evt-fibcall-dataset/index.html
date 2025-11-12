@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ana Carolina Balbino">
-<meta name="dcterms.date" content="2025-10-06">
+<meta name="dcterms.date" content="2025-11-10">
 
 <title>Observação de dados simulados do fibcall-dataset – Didici a te!</title>
 <style>
@@ -220,7 +220,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 6, 2025</p>
+        <p class="date">November 10, 2025</p>
       </div>
     </div>
     
@@ -252,21 +252,21 @@ window.Quarto = {
   </ul></li>
   <li><a href="#análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" id="toc-análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" class="nav-link" data-scroll-target="#análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano">Análise de Valores Extremos - Resultados obtidos através do metodo Bayesiano</a>
   <ul class="collapse">
-  <li><a href="#dataset1" id="toc-dataset1" class="nav-link" data-scroll-target="#dataset1">dataset1</a>
+  <li><a href="#dataset-1" id="toc-dataset-1" class="nav-link" data-scroll-target="#dataset-1">Dataset 1</a></li>
+  <li><a href="#dataset-2" id="toc-dataset-2" class="nav-link" data-scroll-target="#dataset-2">Dataset 2</a>
   <ul class="collapse">
   <li><a href="#ajuste-de-maximos-1" id="toc-ajuste-de-maximos-1" class="nav-link" data-scroll-target="#ajuste-de-maximos-1">Ajuste de Maximos</a></li>
   <li><a href="#aplicação-de-evt-para-wcet-1" id="toc-aplicação-de-evt-para-wcet-1" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-1">Aplicação de EVT para WCET</a></li>
   </ul></li>
-  <li><a href="#dataset2" id="toc-dataset2" class="nav-link" data-scroll-target="#dataset2">dataset2</a>
+  <li><a href="#dataset-3" id="toc-dataset-3" class="nav-link" data-scroll-target="#dataset-3">Dataset 3</a>
   <ul class="collapse">
   <li><a href="#ajuste-de-maximos-2" id="toc-ajuste-de-maximos-2" class="nav-link" data-scroll-target="#ajuste-de-maximos-2">Ajuste de Maximos</a></li>
   <li><a href="#aplicação-de-evt-para-wcet-2" id="toc-aplicação-de-evt-para-wcet-2" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-2">Aplicação de EVT para WCET</a></li>
-  <li><a href="#aplicação-de-evt-para-wcet-3" id="toc-aplicação-de-evt-para-wcet-3" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-3">Aplicação de EVT para WCET</a></li>
   </ul></li>
-  <li><a href="#dataset4" id="toc-dataset4" class="nav-link" data-scroll-target="#dataset4">dataset4</a>
+  <li><a href="#dataset-4" id="toc-dataset-4" class="nav-link" data-scroll-target="#dataset-4">Dataset 4</a>
   <ul class="collapse">
   <li><a href="#ajuste-de-maximos-3" id="toc-ajuste-de-maximos-3" class="nav-link" data-scroll-target="#ajuste-de-maximos-3">Ajuste de Maximos</a></li>
-  <li><a href="#aplicação-de-evt-para-wcet-4" id="toc-aplicação-de-evt-para-wcet-4" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-4">Aplicação de EVT para WCET</a></li>
+  <li><a href="#aplicação-de-evt-para-wcet-3" id="toc-aplicação-de-evt-para-wcet-3" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-3">Aplicação de EVT para WCET</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusões" id="toc-conclusões" class="nav-link" data-scroll-target="#conclusões">Conclusões</a></li>
@@ -378,24 +378,48 @@ window.Quarto = {
 </section>
 <section id="análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" class="level1">
 <h1>Análise de Valores Extremos - Resultados obtidos através do metodo Bayesiano</h1>
-<section id="dataset1" class="level2">
-<h2 class="anchored" data-anchor-id="dataset1">dataset1</h2>
-<div class="cell" data-tbl-cap="Temperature and ozone level.">
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extRemes)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar as colunas disponíveis</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extRemes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: Lmoments</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: distillery</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Anexando pacote: 'extRemes'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Os seguintes objetos são mascarados por 'package:stats':
+
+    qqnorm, qqplot</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="dataset-1" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-1">Dataset 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar as colunas disponíveis</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "CYCLES" "X0xE1"  "X0xE2"  "X0xE7"  "X0xE0"  "X0x17"  "Ox12"  </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>CYCLES)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>CYCLES)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "integer"</code></pre>
@@ -404,20 +428,78 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>CYCLES, <span class="at">breaks =</span> <span class="dv">50</span>,<span class="at">main=</span><span class="st">"Distribuição de CYCLES - Dataset1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>CYCLES, <span class="at">breaks =</span> <span class="dv">50</span>,<span class="at">main=</span><span class="st">"Distribuição de CYCLES - Dataset1"</span>,<span class="at">xlab =</span> <span class="st">"CICLOS"</span>,<span class="at">ylab =</span> <span class="st">"Frequência"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>A partir do histograma é possivel perceber que este dataset não obterá um bom ajuste quando aplicado as tecnicas de maximos para medição dw WCET</p>
+</section>
+<section id="dataset-2" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-2">Dataset 2</h2>
 <section id="ajuste-de-maximos-1" class="level3">
 <h3 class="anchored" data-anchor-id="ajuste-de-maximos-1">Ajuste de Maximos</h3>
 <section id="block-maxima-1" class="level4">
 <h4 class="anchored" data-anchor-id="block-maxima-1">Block Maxima</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>blocksize <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n_dados <span class="ot">&lt;-</span> <span class="fu">length</span>(df<span class="sc">$</span>CYCLES)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>n_blocos <span class="ot">&lt;-</span> <span class="fu">floor</span>(n_dados <span class="sc">/</span> blocksize)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>blocos <span class="ot">&lt;-</span> <span class="fu">split</span>(df<span class="sc">$</span>CYCLES[<span class="dv">1</span><span class="sc">:</span>(n_blocos <span class="sc">*</span> blocksize)], </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_blocos, <span class="at">each =</span> blocksize))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>maximos_blocos <span class="ot">&lt;-</span> <span class="fu">sapply</span>(blocos, max)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ajuste_bm <span class="ot">&lt;-</span> <span class="fu">fevd</span>(maximos_blocos, <span class="at">type =</span> <span class="st">"GEV"</span>, <span class="at">method =</span> <span class="st">"Bayesian"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ajuste_bm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+fevd(x = maximos_blocos, type = "GEV", method = "Bayesian")
+
+[1] "Estimation Method used: Bayesian"
+
+
+ Acceptance Rates:
+log.scale     shape 
+0.3905781 0.4558912 
+fevd(x = maximos_blocos, type = "GEV", method = "Bayesian")
+
+[1] "Quantiles of MCMC Sample from Posterior Distribution"
+
+                 2.5% Posterior Mean        97.5%
+location 4.597460e+06   4.597463e+06 4.597466e+06
+scale    8.886102e+02   1.051409e+03 1.247062e+03
+shape    7.792761e-01   9.977827e-01 1.261825e+00
+
+
+ Estimated parameter covariance matrix.
+              location    log.scale        shape
+location   2.570502529    0.3090637 -0.002256582
+log.scale  0.309063656 8197.3409622  9.221257947
+shape     -0.002256582    9.2212579  0.015087538
+
+ DIC =  5445.578 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ajuste_bm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="pot-1" class="level4">
 <h4 class="anchored" data-anchor-id="pot-1">PoT</h4>
@@ -430,11 +512,13 @@ window.Quarto = {
 </section>
 <section id="modelo-gp-generalized-pareto-1" class="level4">
 <h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-1">Modelo GP (Generalized Pareto)</h4>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV</strong></p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP</strong></p>
 </section>
 </section>
 </section>
-<section id="dataset2" class="level2">
-<h2 class="anchored" data-anchor-id="dataset2">dataset2</h2>
+<section id="dataset-3" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-3">Dataset 3</h2>
 <section id="ajuste-de-maximos-2" class="level3">
 <h3 class="anchored" data-anchor-id="ajuste-de-maximos-2">Ajuste de Maximos</h3>
 <section id="block-maxima-2" class="level4">
@@ -451,8 +535,15 @@ window.Quarto = {
 </section>
 <section id="modelo-gp-generalized-pareto-2" class="level4">
 <h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-2">Modelo GP (Generalized Pareto)</h4>
-<p><strong>Quantiles of MCMC Sample from Posterior Distribution</strong> ## dataset3 ### Ajuste de Maximos</p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV</strong></p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP</strong></p>
 </section>
+</section>
+</section>
+<section id="dataset-4" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-4">Dataset 4</h2>
+<section id="ajuste-de-maximos-3" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-3">Ajuste de Maximos</h3>
 <section id="block-maxima-3" class="level4">
 <h4 class="anchored" data-anchor-id="block-maxima-3">Block Maxima</h4>
 </section>
@@ -467,27 +558,8 @@ window.Quarto = {
 </section>
 <section id="modelo-gp-generalized-pareto-3" class="level4">
 <h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-3">Modelo GP (Generalized Pareto)</h4>
-</section>
-</section>
-</section>
-<section id="dataset4" class="level2">
-<h2 class="anchored" data-anchor-id="dataset4">dataset4</h2>
-<section id="ajuste-de-maximos-3" class="level3">
-<h3 class="anchored" data-anchor-id="ajuste-de-maximos-3">Ajuste de Maximos</h3>
-<section id="block-maxima-4" class="level4">
-<h4 class="anchored" data-anchor-id="block-maxima-4">Block Maxima</h4>
-</section>
-<section id="pot-4" class="level4">
-<h4 class="anchored" data-anchor-id="pot-4">PoT</h4>
-</section>
-</section>
-<section id="aplicação-de-evt-para-wcet-4" class="level3">
-<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-4">Aplicação de EVT para WCET</h3>
-<section id="modelo-gev-generalized-extreme-value-4" class="level4">
-<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-4">Modelo GEV (Generalized Extreme Value)</h4>
-</section>
-<section id="modelo-gp-generalized-pareto-4" class="level4">
-<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-4">Modelo GP (Generalized Pareto)</h4>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GEV</strong></p>
+<p><strong>Estimativas de pwcet com níveis de retorno para diferentes períodos (10, 100, 1000, 10000) - GP</strong></p>
 </section>
 </section>
 </section>
