@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,6 +67,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../.././images/brilhante.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -42,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c90650453d190012b743ee9d00d3fa45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,11 +107,44 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Observação de dados simulados do fibcall-dataset – Didici a te!">
+<meta property="og:description" content="A blog for learning with you!">
+<meta property="og:image" content="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/image.jpg">
+<meta property="og:site_name" content="Didici a te!">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -113,6 +182,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -157,7 +231,48 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#motivações" id="toc-motivações" class="nav-link active" data-scroll-target="#motivações">Motivações</a></li>
+  <li><a href="#caracteristicas-dos-dados-disponibilizados" id="toc-caracteristicas-dos-dados-disponibilizados" class="nav-link" data-scroll-target="#caracteristicas-dos-dados-disponibilizados">Caracteristicas dos dados disponibilizados</a>
+  <ul class="collapse">
+  <li><a href="#ajuste-de-maximos" id="toc-ajuste-de-maximos" class="nav-link" data-scroll-target="#ajuste-de-maximos">Ajuste de Maximos</a>
+  <ul class="collapse">
+  <li><a href="#block-maxima" id="toc-block-maxima" class="nav-link" data-scroll-target="#block-maxima">Block Maxima</a></li>
+  <li><a href="#pot" id="toc-pot" class="nav-link" data-scroll-target="#pot">PoT</a></li>
+  </ul></li>
+  <li><a href="#aplicação-de-evt-para-wcet" id="toc-aplicação-de-evt-para-wcet" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet">Aplicação de EVT para WCET</a>
+  <ul class="collapse">
+  <li><a href="#modelo-gev-generalized-extreme-value" id="toc-modelo-gev-generalized-extreme-value" class="nav-link" data-scroll-target="#modelo-gev-generalized-extreme-value">Modelo GEV (Generalized Extreme Value)</a></li>
+  <li><a href="#modelo-gp-generalized-pareto" id="toc-modelo-gp-generalized-pareto" class="nav-link" data-scroll-target="#modelo-gp-generalized-pareto">Modelo GP (Generalized Pareto)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" id="toc-análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" class="nav-link" data-scroll-target="#análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano">Análise de Valores Extremos - Resultados obtidos através do metodo Bayesiano</a>
+  <ul class="collapse">
+  <li><a href="#dataset1" id="toc-dataset1" class="nav-link" data-scroll-target="#dataset1">dataset1</a>
+  <ul class="collapse">
+  <li><a href="#ajuste-de-maximos-1" id="toc-ajuste-de-maximos-1" class="nav-link" data-scroll-target="#ajuste-de-maximos-1">Ajuste de Maximos</a></li>
+  <li><a href="#aplicação-de-evt-para-wcet-1" id="toc-aplicação-de-evt-para-wcet-1" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-1">Aplicação de EVT para WCET</a></li>
+  </ul></li>
+  <li><a href="#dataset2" id="toc-dataset2" class="nav-link" data-scroll-target="#dataset2">dataset2</a>
+  <ul class="collapse">
+  <li><a href="#ajuste-de-maximos-2" id="toc-ajuste-de-maximos-2" class="nav-link" data-scroll-target="#ajuste-de-maximos-2">Ajuste de Maximos</a></li>
+  <li><a href="#aplicação-de-evt-para-wcet-2" id="toc-aplicação-de-evt-para-wcet-2" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-2">Aplicação de EVT para WCET</a></li>
+  <li><a href="#aplicação-de-evt-para-wcet-3" id="toc-aplicação-de-evt-para-wcet-3" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-3">Aplicação de EVT para WCET</a></li>
+  </ul></li>
+  <li><a href="#dataset4" id="toc-dataset4" class="nav-link" data-scroll-target="#dataset4">dataset4</a>
+  <ul class="collapse">
+  <li><a href="#ajuste-de-maximos-3" id="toc-ajuste-de-maximos-3" class="nav-link" data-scroll-target="#ajuste-de-maximos-3">Ajuste de Maximos</a></li>
+  <li><a href="#aplicação-de-evt-para-wcet-4" id="toc-aplicação-de-evt-para-wcet-4" class="nav-link" data-scroll-target="#aplicação-de-evt-para-wcet-4">Aplicação de EVT para WCET</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusões" id="toc-conclusões" class="nav-link" data-scroll-target="#conclusões">Conclusões</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -165,10 +280,225 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="motivações" class="level1">
+<h1>Motivações</h1>
+<p>Os dados de medição de <strong>ciclos de execução</strong> foram disponibilizados para análise, visando avaliar o desempenho de diferentes programas em cenários simulados. Nosso objetivo é aplicar a <strong>Teoria dos Valores Extremos (EVT)</strong>, uma técnica baseada em medição, para analisar e estimar os <strong>Limites Probabilísticos de Tempo de Execução no Pior Caso (pWCET)</strong>.</p>
+<p>O processo analítico envolverá a observação dos máximos dos ciclos de execução, seguido pela aplicação da modelagem pela <strong>Distribuição Generalizada de Pareto (GP)</strong> e a <strong>Distribuição Generalizada de Valores Extremos (GEV)</strong>, que unifica os modelos Weibull, Gumbel e Fréchet, evitando estimativas inseguras ou superestimadas.</p>
+<p>Dado que os dados foram gerados em cenários simulados com a <strong>mesma fonte de aleatoriedade/instabilidade</strong>, o foco será na <strong>comparação das estimativas de pWCET</strong> obtidas a partir de diferentes <em>datasets</em>.</p>
+<p>Esta brevce observação comparativa verificará a <strong>consistência</strong> dos modelos estimados (via testes de qualidade de ajuste e análise do parâmetro de forma <span class="math inline">\(\xi\)</span>) e avaliar se as estimativas de pWCET, <span class="math inline">\(C(p)\)</span>, convergem ou divergem, permitindo concluir se as configurações de <em>hardware</em> ou distribuições de dados subjacentes resultam em <strong>projeções semelhantes ou distintas</strong> para o tempo de execução no pior caso probabilístico. 👍</p>
+</section>
+<section id="caracteristicas-dos-dados-disponibilizados" class="level1">
+<h1>Caracteristicas dos dados disponibilizados</h1>
+<p>Foram disponibilizados 4 arquivos no formato .csv, os dados de mediçao contem 7 colunas e 10.000 linhas de observações;sendo a nossa coluna de interesse a “CYCLES” devido ao seu comportamento de contagem de ciclos do Hardware durante a execução de programas.</p>
+<p>Neste estudo foram abstraídos os cenarios de casos de teste bechmark para execução dos programas, bem como caracteristicas do hardware que foi utilizado para captura das informações nº de colunas nº de linhas 7 10.000 nº total de observações 40.000</p>
+<p>fibcall_perf_rec_6_eventos_15_core_sem_inter_100_x.csv 4 amostras com atquivos tipo .csv</p>
+<div class="cell" data-tbl-cap="Dados de Performance - fibcall_rec_6_eventos_15_core">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Dados de Performance - fibcall_rec_6_eventos_15_core</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">nº.de.colunas</th>
+<th style="text-align: center;">nº.de.linhas</th>
+<th style="text-align: center;">nº.total.de.observações</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">10000</td>
+<td style="text-align: center;">40000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-tbl-cap="Especificações do Dataset">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dados_detalhados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Parâmetro <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Número de arquivos"</span>, <span class="st">"Tipo de arquivo"</span>, <span class="st">"Nome Generico dos arquivos"</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Valor =</span> <span class="fu">c</span>( <span class="st">"4"</span>, <span class="st">".csv"</span>,<span class="st">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_x.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dados_detalhados, <span class="at">align =</span> <span class="fu">c</span>(<span class="st">'l'</span>, <span class="st">'c'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Especificações do Dataset</caption>
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parâmetro</th>
+<th style="text-align: center;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Número de arquivos</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tipo de arquivo</td>
+<td style="text-align: center;">.csv</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nome Generico dos arquivos</td>
+<td style="text-align: center;">fibcall_perf_rec_6_eventos_15_core_sem_inter_100_x.csv</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="ajuste-de-maximos" class="level2">
+<h2 class="anchored" data-anchor-id="ajuste-de-maximos">Ajuste de Maximos</h2>
+<section id="block-maxima" class="level3">
+<h3 class="anchored" data-anchor-id="block-maxima">Block Maxima</h3>
+<p><span class="math display">\[ M_{j}=max\{{{X_{({{j-1}})m+1},...,X_{jm}}}\} \]</span></p>
+</section>
+<section id="pot" class="level3">
+<h3 class="anchored" data-anchor-id="pot">PoT</h3>
+<p><span class="math display">\[ Yi=Xi-u  ,para\]</span> <span class="math display">\[ Xi&gt;u \]</span></p>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet" class="level2">
+<h2 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet">Aplicação de EVT para WCET</h2>
+<section id="modelo-gev-generalized-extreme-value" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value">Modelo GEV (Generalized Extreme Value)</h3>
+<p><span class="math display">\[ G({{z}})=exp\{-{{[1+\xi(\frac{z-\mu}{\sigma})]^{-1/\xi}}}\} \]</span></p>
+</section>
+<section id="modelo-gp-generalized-pareto" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-gp-generalized-pareto">Modelo GP (Generalized Pareto)</h3>
+<p><span class="math display">\[ H\left(y{{}}\right)=1-^{}(1+~\frac{\xi y}{\sigma}){{^{-1/\xi}}} \]</span></p>
+</section>
+</section>
+</section>
+<section id="análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" class="level1">
+<h1>Análise de Valores Extremos - Resultados obtidos através do metodo Bayesiano</h1>
+<section id="dataset1" class="level2">
+<h2 class="anchored" data-anchor-id="dataset1">dataset1</h2>
+<div class="cell" data-tbl-cap="Temperature and ozone level.">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extRemes)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar as colunas disponíveis</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "CYCLES" "X0xE1"  "X0xE2"  "X0xE7"  "X0xE0"  "X0x17"  "Ox12"  </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>CYCLES)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>CYCLES, <span class="at">breaks =</span> <span class="dv">50</span>,<span class="at">main=</span><span class="st">"Distribuição de CYCLES - Dataset1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="ajuste-de-maximos-1" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-1">Ajuste de Maximos</h3>
+<section id="block-maxima-1" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-1">Block Maxima</h4>
+</section>
+<section id="pot-1" class="level4">
+<h4 class="anchored" data-anchor-id="pot-1">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-1" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-1">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-1" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-1">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-1" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-1">Modelo GP (Generalized Pareto)</h4>
+</section>
+</section>
+</section>
+<section id="dataset2" class="level2">
+<h2 class="anchored" data-anchor-id="dataset2">dataset2</h2>
+<section id="ajuste-de-maximos-2" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-2">Ajuste de Maximos</h3>
+<section id="block-maxima-2" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-2">Block Maxima</h4>
+</section>
+<section id="pot-2" class="level4">
+<h4 class="anchored" data-anchor-id="pot-2">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-2" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-2">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-2" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-2">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-2" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-2">Modelo GP (Generalized Pareto)</h4>
+<p><strong>Quantiles of MCMC Sample from Posterior Distribution</strong> ## dataset3 ### Ajuste de Maximos</p>
+</section>
+<section id="block-maxima-3" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-3">Block Maxima</h4>
+</section>
+<section id="pot-3" class="level4">
+<h4 class="anchored" data-anchor-id="pot-3">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-3" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-3">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-3" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-3">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-3" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-3">Modelo GP (Generalized Pareto)</h4>
+</section>
+</section>
+</section>
+<section id="dataset4" class="level2">
+<h2 class="anchored" data-anchor-id="dataset4">dataset4</h2>
+<section id="ajuste-de-maximos-3" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-3">Ajuste de Maximos</h3>
+<section id="block-maxima-4" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-4">Block Maxima</h4>
+</section>
+<section id="pot-4" class="level4">
+<h4 class="anchored" data-anchor-id="pot-4">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-4" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-4">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-4" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-4">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-4" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-4">Modelo GP (Generalized Pareto)</h4>
+</section>
+</section>
+</section>
+</section>
+<section id="conclusões" class="level1">
+<h1>Conclusões</h1>
 
 
+</section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -242,7 +572,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+        var filterRegex = new RegExp("https:\/\/carolbalbs\.github\.io\/blog-dicici-a-te");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
