@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Didici a te!</title>
+<link>https://carolbalbs.github.io/blog-dicici-a-te/</link>
+<atom:link href="https://carolbalbs.github.io/blog-dicici-a-te/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog for learning with you!</description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Mon, 06 Oct 2025 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/evt-fibcall-dataset/index.html}</title>
+  <dc:creator>Ana Carolina Balbino</dc:creator>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/</link>
+  <description>{B4F502887207:/posts/evt-fibcall-dataset/index.html}</description>
+  <category>R</category>
+  <category>code</category>
+  <category>analysis</category>
+  <category>EVT</category>
+  <category>wcet</category>
+  <category>extRemes</category>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/</guid>
+  <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
+  <media:content url="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/ade-health-diase/index.html}</title>
+  <dc:creator>Ana Carolina Balbino</dc:creator>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/ade-health-diase/</link>
+  <description>{B4F502887207:/posts/ade-health-diase/index.html}</description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/ade-health-diase/</guid>
+  <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
+  <media:content url="https://carolbalbs.github.io/blog-dicici-a-te/posts/ade-health-diase/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/evt-sintecs-data-genaration/index.html}</title>
+  <dc:creator>Ana Carolina Balbino</dc:creator>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-sintecs-data-genaration/</link>
+  <description>{B4F502887207:/posts/evt-sintecs-data-genaration/index.html}</description>
+  <category>R</category>
+  <category>code</category>
+  <category>analysis</category>
+  <category>EVT</category>
+  <category>wcet</category>
+  <category>extRemes</category>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-sintecs-data-genaration/</guid>
+  <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>{B4F502887207:/posts/welcome/index.html}</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/welcome/</link>
+  <description>{B4F502887207:/posts/welcome/index.html}</description>
+  <category>news</category>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/welcome/</guid>
+  <pubDate>Fri, 03 Oct 2025 03:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

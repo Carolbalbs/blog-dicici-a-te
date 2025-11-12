@@ -6,39 +6,320 @@
       version="2.0">
 <channel>
 <title>Didici a te!</title>
-<link>https://your-website-url.example.com/</link>
-<atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
-<description>A blog built with Quarto</description>
+<link>https://carolbalbs.github.io/blog-dicici-a-te/</link>
+<atom:link href="https://carolbalbs.github.io/blog-dicici-a-te/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog for learning with you!</description>
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Mon, 06 Oct 2025 03:00:00 GMT</lastBuildDate>
 <item>
   <title>Observação de dados simulados do fibcall-dataset</title>
   <dc:creator>Ana Carolina Balbino</dc:creator>
-  <link>https://your-website-url.example.com/posts/evt-fibcall-dataset/</link>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/</link>
   <description><![CDATA[ 
 
 
 
 
 
+<section id="motivações" class="level1">
+<h1>Motivações</h1>
+<p>Os dados de medição de <strong>ciclos de execução</strong> foram disponibilizados para análise, visando avaliar o desempenho de diferentes programas em cenários simulados. Nosso objetivo é aplicar a <strong>Teoria dos Valores Extremos (EVT)</strong>, uma técnica baseada em medição, para analisar e estimar os <strong>Limites Probabilísticos de Tempo de Execução no Pior Caso (pWCET)</strong>.</p>
+<p>O processo analítico envolverá a observação dos máximos dos ciclos de execução, seguido pela aplicação da modelagem pela <strong>Distribuição Generalizada de Pareto (GP)</strong> e a <strong>Distribuição Generalizada de Valores Extremos (GEV)</strong>, que unifica os modelos Weibull, Gumbel e Fréchet, evitando estimativas inseguras ou superestimadas.</p>
+<p>Dado que os dados foram gerados em cenários simulados com a <strong>mesma fonte de aleatoriedade/instabilidade</strong>, o foco será na <strong>comparação das estimativas de pWCET</strong> obtidas a partir de diferentes <em>datasets</em>.</p>
+<p>Esta brevce observação comparativa verificará a <strong>consistência</strong> dos modelos estimados (via testes de qualidade de ajuste e análise do parâmetro de forma <img src="https://latex.codecogs.com/png.latex?%5Cxi">) e avaliar se as estimativas de pWCET, <img src="https://latex.codecogs.com/png.latex?C(p)">, convergem ou divergem, permitindo concluir se as configurações de <em>hardware</em> ou distribuições de dados subjacentes resultam em <strong>projeções semelhantes ou distintas</strong> para o tempo de execução no pior caso probabilístico. 👍</p>
+</section>
+<section id="caracteristicas-dos-dados-disponibilizados" class="level1">
+<h1>Caracteristicas dos dados disponibilizados</h1>
+<p>Foram disponibilizados 4 arquivos no formato .csv, os dados de mediçao contem 7 colunas e 10.000 linhas de observações;sendo a nossa coluna de interesse a “CYCLES” devido ao seu comportamento de contagem de ciclos do Hardware durante a execução de programas.</p>
+<p>Neste estudo foram abstraídos os cenarios de casos de teste bechmark para execução dos programas, bem como caracteristicas do hardware que foi utilizado para captura das informações nº de colunas nº de linhas 7 10.000 nº total de observações 40.000</p>
+<p>fibcall_perf_rec_6_eventos_15_core_sem_inter_100_x.csv 4 amostras com atquivos tipo .csv</p>
+<div class="cell" data-tbl-cap="Dados de Performance - fibcall_rec_6_eventos_15_core">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Dados de Performance - fibcall_rec_6_eventos_15_core</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">nº.de.colunas</th>
+<th style="text-align: center;">nº.de.linhas</th>
+<th style="text-align: center;">nº.total.de.observações</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">10000</td>
+<td style="text-align: center;">40000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-tbl-cap="Especificações do Dataset">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">dados_detalhados <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(</span>
+<span id="cb1-2">  Parâmetro <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Número de arquivos"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tipo de arquivo"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Nome Generico dos arquivos"</span>),</span>
+<span id="cb1-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Valor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>( <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"4"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".csv"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_x.csv"</span>)</span>
+<span id="cb1-4">)</span>
+<span id="cb1-5"></span>
+<span id="cb1-6">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(dados_detalhados, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'l'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'c'</span>))</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Especificações do Dataset</caption>
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parâmetro</th>
+<th style="text-align: center;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Número de arquivos</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tipo de arquivo</td>
+<td style="text-align: center;">.csv</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nome Generico dos arquivos</td>
+<td style="text-align: center;">fibcall_perf_rec_6_eventos_15_core_sem_inter_100_x.csv</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="ajuste-de-maximos" class="level2">
+<h2 class="anchored" data-anchor-id="ajuste-de-maximos">Ajuste de Maximos</h2>
+<section id="block-maxima" class="level3">
+<h3 class="anchored" data-anchor-id="block-maxima">Block Maxima</h3>
+<p><img src="https://latex.codecogs.com/png.latex?%20M_%7Bj%7D=max%5C%7B%7B%7BX_%7B(%7B%7Bj-1%7D%7D)m+1%7D,...,X_%7Bjm%7D%7D%7D%5C%7D%20"></p>
+</section>
+<section id="pot" class="level3">
+<h3 class="anchored" data-anchor-id="pot">PoT</h3>
+<p><img src="https://latex.codecogs.com/png.latex?%20Yi=Xi-u%20%20,para"> <img src="https://latex.codecogs.com/png.latex?%20Xi%3Eu%20"></p>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet" class="level2">
+<h2 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet">Aplicação de EVT para WCET</h2>
+<section id="modelo-gev-generalized-extreme-value" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value">Modelo GEV (Generalized Extreme Value)</h3>
+<p><img src="https://latex.codecogs.com/png.latex?%20G(%7B%7Bz%7D%7D)=exp%5C%7B-%7B%7B%5B1+%5Cxi(%5Cfrac%7Bz-%5Cmu%7D%7B%5Csigma%7D)%5D%5E%7B-1/%5Cxi%7D%7D%7D%5C%7D%20"></p>
+</section>
+<section id="modelo-gp-generalized-pareto" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-gp-generalized-pareto">Modelo GP (Generalized Pareto)</h3>
+<p><img src="https://latex.codecogs.com/png.latex?%20H%5Cleft(y%7B%7B%7D%7D%5Cright)=1-%5E%7B%7D(1+~%5Cfrac%7B%5Cxi%20y%7D%7B%5Csigma%7D)%7B%7B%5E%7B-1/%5Cxi%7D%7D%7D%20"></p>
+</section>
+</section>
+</section>
+<section id="análise-de-valores-extremos---resultados-obtidos-através-do-metodo-bayesiano" class="level1">
+<h1>Análise de Valores Extremos - Resultados obtidos através do metodo Bayesiano</h1>
+<section id="dataset1" class="level2">
+<h2 class="anchored" data-anchor-id="dataset1">dataset1</h2>
+<div class="cell" data-tbl-cap="Temperature and ozone level.">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(extRemes)</span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Carregar dados</span></span>
+<span id="cb2-3">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read.csv2</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fibcall_perf_rec_6_eventos_15_core_sem_inter_100_1.csv"</span>)</span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Verificar as colunas disponíveis</span></span>
+<span id="cb2-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(df)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "CYCLES" "X0xE1"  "X0xE2"  "X0xE7"  "X0xE0"  "X0x17"  "Ox12"  </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">class</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>CYCLES)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">hist</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>CYCLES, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">main=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Distribuição de CYCLES - Dataset1"</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="ajuste-de-maximos-1" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-1">Ajuste de Maximos</h3>
+<section id="block-maxima-1" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-1">Block Maxima</h4>
+</section>
+<section id="pot-1" class="level4">
+<h4 class="anchored" data-anchor-id="pot-1">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-1" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-1">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-1" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-1">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-1" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-1">Modelo GP (Generalized Pareto)</h4>
+</section>
+</section>
+</section>
+<section id="dataset2" class="level2">
+<h2 class="anchored" data-anchor-id="dataset2">dataset2</h2>
+<section id="ajuste-de-maximos-2" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-2">Ajuste de Maximos</h3>
+<section id="block-maxima-2" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-2">Block Maxima</h4>
+</section>
+<section id="pot-2" class="level4">
+<h4 class="anchored" data-anchor-id="pot-2">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-2" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-2">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-2" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-2">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-2" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-2">Modelo GP (Generalized Pareto)</h4>
+<p><strong>Quantiles of MCMC Sample from Posterior Distribution</strong> ## dataset3 ### Ajuste de Maximos</p>
+</section>
+<section id="block-maxima-3" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-3">Block Maxima</h4>
+</section>
+<section id="pot-3" class="level4">
+<h4 class="anchored" data-anchor-id="pot-3">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-3" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-3">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-3" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-3">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-3" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-3">Modelo GP (Generalized Pareto)</h4>
+</section>
+</section>
+</section>
+<section id="dataset4" class="level2">
+<h2 class="anchored" data-anchor-id="dataset4">dataset4</h2>
+<section id="ajuste-de-maximos-3" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-maximos-3">Ajuste de Maximos</h3>
+<section id="block-maxima-4" class="level4">
+<h4 class="anchored" data-anchor-id="block-maxima-4">Block Maxima</h4>
+</section>
+<section id="pot-4" class="level4">
+<h4 class="anchored" data-anchor-id="pot-4">PoT</h4>
+</section>
+</section>
+<section id="aplicação-de-evt-para-wcet-4" class="level3">
+<h3 class="anchored" data-anchor-id="aplicação-de-evt-para-wcet-4">Aplicação de EVT para WCET</h3>
+<section id="modelo-gev-generalized-extreme-value-4" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gev-generalized-extreme-value-4">Modelo GEV (Generalized Extreme Value)</h4>
+</section>
+<section id="modelo-gp-generalized-pareto-4" class="level4">
+<h4 class="anchored" data-anchor-id="modelo-gp-generalized-pareto-4">Modelo GP (Generalized Pareto)</h4>
+</section>
+</section>
+</section>
+</section>
+<section id="conclusões" class="level1">
+<h1>Conclusões</h1>
 
 
+</section>
 
- ]]></description>
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>R</category>
   <category>code</category>
   <category>analysis</category>
   <category>EVT</category>
   <category>wcet</category>
   <category>extRemes</category>
-  <guid>https://your-website-url.example.com/posts/evt-fibcall-dataset/</guid>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/</guid>
   <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
-  <media:content url="https://your-website-url.example.com/posts/evt-fibcall-dataset/image.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-fibcall-dataset/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Analise Explorátioria de dados utilizando o banco de dados “Heart Disease”</title>
   <dc:creator>Ana Carolina Balbino</dc:creator>
-  <link>https://your-website-url.example.com/posts/ade-health-diase/</link>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/ade-health-diase/</link>
   <description><![CDATA[ 
 
 
@@ -49,18 +330,18 @@
 
 
 
- ]]></description>
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>news</category>
   <category>code</category>
   <category>analysis</category>
-  <guid>https://your-website-url.example.com/posts/ade-health-diase/</guid>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/ade-health-diase/</guid>
   <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
-  <media:content url="https://your-website-url.example.com/posts/ade-health-diase/image.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://carolbalbs.github.io/blog-dicici-a-te/posts/ade-health-diase/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Geração de dados Sinteticos aplicados a Teoria dos valores Extremos(EVT)</title>
   <dc:creator>Ana Carolina Balbino</dc:creator>
-  <link>https://your-website-url.example.com/posts/evt-sintecs-data-genaration/</link>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-sintecs-data-genaration/</link>
   <description><![CDATA[ 
 
 
@@ -97,20 +378,20 @@ font-style: inherit;">1</span></span></code></pre></div></div>
 
 </section>
 
- ]]></description>
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>R</category>
   <category>code</category>
   <category>analysis</category>
   <category>EVT</category>
   <category>wcet</category>
   <category>extRemes</category>
-  <guid>https://your-website-url.example.com/posts/evt-sintecs-data-genaration/</guid>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/evt-sintecs-data-genaration/</guid>
   <pubDate>Mon, 06 Oct 2025 03:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Welcome To My Blog</title>
   <dc:creator>Tristan O&#39;Malley</dc:creator>
-  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <link>https://carolbalbs.github.io/blog-dicici-a-te/posts/welcome/</link>
   <description><![CDATA[ 
 
 
@@ -118,14 +399,14 @@ font-style: inherit;">1</span></span></code></pre></div></div>
 
 
 <p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p><img src="https://carolbalbs.github.io/blog-dicici-a-te/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
 <p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
 
 
 
- ]]></description>
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>news</category>
-  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <guid>https://carolbalbs.github.io/blog-dicici-a-te/posts/welcome/</guid>
   <pubDate>Fri, 03 Oct 2025 03:00:00 GMT</pubDate>
 </item>
 </channel>
