@@ -1,6 +1,6 @@
 ---
 title: "Sobre Mim"
-image: /images/sobre(Edit).jpg
+image: ./images/about.jpg
 about:
   template: jolla
   links:
@@ -8,7 +8,7 @@ about:
       text: LinkedIn
       href: https://linkedin.com/in/ana-carolina-balbino
     - icon: envelope-fill
-      text: email
+      text: Email
       href: mailto:carolbalbinosilva4@gmail.com
     - icon: github
       text: Github
@@ -16,4 +16,4 @@ about:
 
 ---
 
-Olá eu sou Ana Carolina, formada no Interdisciplinar em Ciência, Tecnologia e Inovação,Graduanda em Ciência da Computação na Universidade Federal da Bahia. Neste blog pretendo escrever um pouquinho sobre a minha tragetória, uma mescla entre conquistas e desenvolvimento de projetos práticos que fiz ao longo das minhas graduações.
+Olá, eu sou Ana Carolina, formada no Interdisciplinar em Ciência, Tecnologia e Inovação, Graduanda em Ciência da Computação na Universidade Federal da Bahia. Neste blog pretendo escrever um pouquinho sobre a minha tragetória: uma mescla entre conquistas e desenvolvimento de projetos práticos que fiz ao longo das minhas graduações.
